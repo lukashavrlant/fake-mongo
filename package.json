@@ -1,25 +1,27 @@
 {
-    "name": "ibb-fake-mongo",
-    "version": "0.1.0",
-    "description": "",
-    "types": "dist/src/index.d.ts",
-    "main": "dist/src/index.js",
-    "scripts": {
-        "build": "tsc",
-        "prepublishOnly": "npm run build",
-        "lint": "tslint --project ./tsconfig.json './src/**/*.ts' './sandbox/**/*.ts' --fix",
-        "test": "ts-node sandbox/sandbox.ts"
-    },
-    "dependencies": {
-        "mongodb-download": "2.2.6",
-        "mongodb-prebuilt": "6.3.6",
-        "portfinder": "1.0.13"
-    },
-    "devDependencies": {
-        "@types/node": "6.0.52",
-        "ts-node": "4.1.0",
-        "tslint": "5.9.1",
-        "tslint-eslint-rules": "4.1.1",
-        "typescript": "2.7.1"
-    }
+  "name": "ibb-fake-mongo",
+  "version": "0.1.0",
+  "description": "",
+  "types": "dist/src/index.d.ts",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "lint": "tslint --project ./tsconfig.json './src/**/*.ts' './sandbox/**/*.ts' --fix",
+    "test": "ts-node sandbox/sandbox.ts"
+  },
+  "dependencies": {
+    "mongodb-download": "2.2.6",
+    "mongodb-prebuilt": "6.3.6",
+    "mongodb": "3.0.7",
+    "portfinder": "1.0.13"
+  },
+  "devDependencies": {
+    "@types/node": "6.0.52",
+    "@types/mongodb": "3.0.15",
+    "ts-node": "4.1.0",
+    "tslint": "5.9.1",
+    "tslint-eslint-rules": "4.1.1",
+    "typescript": "2.7.1"
+  }
 }

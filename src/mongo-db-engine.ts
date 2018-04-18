@@ -1,8 +1,8 @@
-import {MongoConnectionOptions, MongoEngine} from "./mongo-engine";
-import {MongoDBDownload} from "mongodb-download";
-import {MongoBins, MongoDBPrebuilt, MongodHelper} from "mongodb-prebuilt";
-import {join} from "path";
-import {getPortPromise} from "portfinder";
+import {MongoConnectionOptions, MongoEngine} from './mongo-engine';
+import {MongoDBDownload} from 'mongodb-download';
+import {MongoBins, MongoDBPrebuilt, MongodHelper} from 'mongodb-prebuilt';
+import {join} from 'path';
+import {getPortPromise} from 'portfinder';
 
 export interface MongoDbEngineOptions {
     mongoDbVersion?: string;
@@ -23,7 +23,11 @@ export class MongoDbEngine implements MongoEngine {
 
     public async start(): Promise<MongoConnectionOptions> {
         await this.downloadBinariesIfNotExist();
-        return await this.tryStartMongoEngine();
+        return this.tryStartMongoEngine();
+    }
+
+    public async stop(): Promise<void> {
+        return undefined;
     }
 
     private async tryStartMongoEngine(): Promise<MongoConnectionOptions> {
@@ -38,10 +42,6 @@ export class MongoDbEngine implements MongoEngine {
         }
 
         throw new Error(`Cannot start Mongo Engine after ${MongoDbEngine.MaxNumberOfStartTries} retries`);
-    }
-
-    public async stop(): Promise<void> {
-        return undefined;
     }
 
     private async downloadBinariesIfNotExist() {
@@ -59,7 +59,7 @@ export class MongoDbEngine implements MongoEngine {
         mongodHelper.mongoBin = mongoBins;
 
         return {
-            mongodHelper: mongodHelper,
+            mongodHelper,
             connectionOptions: {
                 port: config.port,
                 host: config.bind_ip
